@@ -113,13 +113,17 @@ jobs:
           echo "arm64 reports: $VERSION"
           [ "$VERSION" = "$EXPECTED" ]
 
-      - name: Compute minor version alias
+      - name: Compute version aliases
         if: ${{ needs.check_and_update_bun_version.outputs.new_version == 'true' || github.event_name == 'workflow_dispatch' }}
-        id: minor
+        id: tags
         env:
           LATEST_VERSION: ${{ needs.check_and_update_bun_version.outputs.latest_version }}
         run: |
-          MINOR=$(echo "$LATEST_VERSION" | sed 's/^v//; s/\.[0-9]*$//')
+          V="${LATEST_VERSION#v}"
+          MAJOR="${V%%.*}"
+          MINOR="${V%.*}"
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "major=$MAJOR" >> "$GITHUB_OUTPUT"
           echo "minor=$MINOR" >> "$GITHUB_OUTPUT"
 
       - name: Build and push to GHCR
@@ -136,5 +140,6 @@ jobs:
           sbom: true
           tags: |
             ghcr.io/philippdormann/bun:latest
-            ghcr.io/philippdormann/bun:${{ needs.check_and_update_bun_version.outputs.latest_version }}
-            ghcr.io/philippdormann/bun:${{ steps.minor.outputs.minor }}
+            ghcr.io/philippdormann/bun:${{ steps.tags.outputs.major }}
+            ghcr.io/philippdormann/bun:${{ steps.tags.outputs.minor }}
+            ghcr.io/philippdormann/bun:${{ steps.tags.outputs.version }}
