@@ -111,8 +111,8 @@ docker images mini-bun
 
 ## 🤖 GitHub Actions Workflow
 
-- **Publish workflow** (`publish.yml`): Runs weekly (Monday midnight) and on manual dispatch. Each run applies Bun and Alpine pins, smoke-tests amd64, then commits Dockerfile and README together (Bun, Alpine, measured size). Registry push stays limited to a pin change or a manual dispatch.
-- **CI workflow** (`ci.yml`): Builds the image, runs the smoke test, and checks that the README Alpine minor and `**N.N MB**` size match the image (native arch only, no QEMU overhead).
+- **Publish workflow** (`publish.yml`): Runs weekly (Monday midnight) and on manual dispatch. Each run applies Bun and Alpine pins, smoke-tests amd64, runs a Trivy zero-CVE scan (fails on any `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` OS vulnerability), then commits Dockerfile and README together (Bun, Alpine, measured size). Registry push stays limited to a pin change or a manual dispatch.
+- **CI workflow** (`ci.yml`): Builds the image, runs the smoke test, runs a Trivy zero-CVE scan (fails on any `UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL` OS vulnerability), and checks that the README Alpine minor and `**N.N MB**` size match the image (native arch only, no QEMU overhead).
 
 ## 🙏 Credits
 
