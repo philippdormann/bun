@@ -31,5 +31,14 @@ jobs:
           EXPECTED=$(grep 'ARG BUN_VERSION=' Dockerfile | cut -d'=' -f2 | sed 's/^v//')
           ./scripts/smoke-test.sh mini-bun:ci-test "$EXPECTED"
 
+      - name: Trivy zero-CVE scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: 'mini-bun:ci-test'
+          format: 'table'
+          scanners: 'vuln'
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          exit-code: '1'
+
       - name: Check docs against image
         run: ./scripts/bump-versions.sh check-docs mini-bun:ci-test

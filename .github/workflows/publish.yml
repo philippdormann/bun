@@ -78,6 +78,15 @@ jobs:
           EXPECTED="${LATEST_VERSION#v}"
           ./scripts/smoke-test.sh mini-bun:smoke-amd64 "$EXPECTED"
 
+      - name: Trivy zero-CVE scan amd64
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: 'mini-bun:smoke-amd64'
+          format: 'table'
+          scanners: 'vuln'
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          exit-code: '1'
+
       - name: Sync Dockerfile pins and docs
         id: sync
         run: ./scripts/bump-versions.sh sync-docs mini-bun:smoke-amd64
