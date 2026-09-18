@@ -2,7 +2,7 @@ FROM alpine:3.24 AS build
 
 ARG BUN_VERSION=v1.4.2
 
-RUN apk --no-cache add \
+RUN apk update && apk upgrade --no-cache && apk --no-cache add \
 	ca-certificates \
 	curl \
 	dirmngr \
@@ -71,7 +71,7 @@ ENV PATH="${PATH}:/usr/local/bun-node-fallback-bin"
 
 COPY --from=build /usr/local/bin/bun /usr/local/bin/
 
-RUN apk add --no-cache libgcc libstdc++ \
+RUN apk update && apk upgrade --no-cache && apk add --no-cache libgcc libstdc++ \
     && addgroup -g 1000 bun \
     && adduser -u 1000 -G bun -s /bin/sh -D bun \
     && mkdir -p /home/bun/app && chown bun:bun /home/bun/app \
