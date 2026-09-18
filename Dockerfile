@@ -55,7 +55,7 @@ RUN apk update && apk upgrade --no-cache && apk --no-cache add \
 
 FROM alpine:3.24
 
-LABEL org.opencontainers.image.source="https://github.com/popwers/mini-bun" \
+LABEL org.opencontainers.image.source="https://github.com/philippdormann/bun" \
       org.opencontainers.image.description="Minimal Bun runtime image (Alpine + UPX-compressed official Bun binary)"
 
 # Disable the runtime transpiler cache by default inside Docker containers.
