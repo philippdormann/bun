@@ -9,8 +9,8 @@ Node fallback lets a user run `node script.js` inside the image. The `node` name
 
 ## How to get to it (user POV)
 
-- Run `docker run --rm popwers/mini-bun node script.js` after the file exists in the container.
-- Run `node` from a shell in the container (`docker run --rm -it popwers/mini-bun sh`).
+- Run `docker run --rm ghcr.io/philippdormann/bun node script.js` after the file exists in the container.
+- Run `node` from a shell in the container (`docker run --rm -it ghcr.io/philippdormann/bun sh`).
 
 ## Driving it with docker
 

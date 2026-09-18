@@ -10,9 +10,9 @@ Run Bun lets a user print the runtime version, evaluate an expression, and invok
 
 ## How to get to it (user POV)
 
-- Run `docker run --rm popwers/mini-bun --version`.
-- Run `docker run --rm popwers/mini-bun bun -e 'console.log(1 + 1)'`.
-- Run `docker run --rm popwers/mini-bun bunx --version`.
+- Run `docker run --rm ghcr.io/philippdormann/bun --version`.
+- Run `docker run --rm ghcr.io/philippdormann/bun bun -e 'console.log(1 + 1)'`.
+- Run `docker run --rm ghcr.io/philippdormann/bun bunx --version`.
 
 ## Driving it with docker
 

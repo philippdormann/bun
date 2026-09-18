@@ -10,9 +10,9 @@ Entrypoint prepends `/usr/local/bin/bun` when the first argument is a flag, an u
 
 ## How to get to it (user POV)
 
-- Run `docker run --rm popwers/mini-bun --version`.
-- Run `docker run --rm popwers/mini-bun index.ts` when the file is not executable.
-- Run `docker run --rm -it popwers/mini-bun sh`.
+- Run `docker run --rm ghcr.io/philippdormann/bun --version`.
+- Run `docker run --rm ghcr.io/philippdormann/bun index.ts` when the file is not executable.
+- Run `docker run --rm -it ghcr.io/philippdormann/bun sh`.
 
 ## Driving it with docker
 

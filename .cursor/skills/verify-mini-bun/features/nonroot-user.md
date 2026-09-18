@@ -9,7 +9,7 @@ Non-root user lets a user run the container as `bun` (UID/GID 1000) and write fi
 
 ## How to get to it (user POV)
 
-- Run `docker run --rm -u bun popwers/mini-bun:latest bun index.ts`.
+- Run `docker run --rm -u bun ghcr.io/philippdormann/bun:latest bun index.ts`.
 - Set `USER bun` in a derived Dockerfile.
 
 ## Driving it with docker

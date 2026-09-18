@@ -7,7 +7,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 - Build `mini-bun:verify` from the repo root with `docker buildx build --load -t mini-bun:verify .`.
 - Set `EXPECTED` to the Dockerfile `ARG BUN_VERSION` value with the leading `v` removed.
 - Run `./scripts/verify-doctor.sh mini-bun:verify` and require a matching Bun version, Alpine minor, and README size.
-- Never drive `popwers/mini-bun` or another shared tag as if it were this run.
+- Never drive `ghcr.io/philippdormann/bun` or another shared tag as if it were this run.
 
 ## Driving conventions
 

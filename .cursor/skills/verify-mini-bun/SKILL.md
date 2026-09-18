@@ -5,7 +5,7 @@ description: Drive the mini-bun Docker image the way a user does. Use when a Doc
 
 # Verify mini-bun
 
-Primary surface is the Docker image. Users run `docker run` and `FROM popwers/mini-bun`. There is no web UI, no Vite+ app, and no shadcn surface. Do not install Vite or shadcn to verify this repo.
+Primary surface is the Docker image. Users run `docker run` and `FROM ghcr.io/philippdormann/bun`. There is no web UI, no Vite+ app, and no shadcn surface. Do not install Vite or shadcn to verify this repo.
 
 Harness is `docker run` plus `scripts/smoke-test.sh`. Evidence is command transcripts, exit codes, `bun --version`, `/etc/os-release`, and `docker image inspect` size.
 
@@ -75,7 +75,7 @@ Remove only what this run created:
 docker rmi mini-bun:verify
 ```
 
-If Launch used another unique tag, remove that tag. Do not `docker rmi mini-bun` or `popwers/mini-bun`. Do not delete `/tmp/verify-mini-bun/<run-id>/`.
+If Launch used another unique tag, remove that tag. Do not `docker rmi mini-bun` or `ghcr.io/philippdormann/bun`. Do not delete `/tmp/verify-mini-bun/<run-id>/`.
 
 ## Helpers
 
