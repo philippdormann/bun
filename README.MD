@@ -15,7 +15,7 @@
 
 ## 🚀 Project Overview
 
-[Mini Bun](https://hub.docker.com/r/popwers/mini-bun) packages the official Bun runtime into a **37.6 MB** Docker image, roughly 3× smaller than `oven/bun:alpine`. The official release binary is verified with GPG + SHA256, stripped, and then compressed with UPX (`--best --lzma`), all on top of Alpine 3.24. The megabyte figure is GitHub Actions `docker image inspect` Size after the CI buildx load. Do not overwrite it from a local `docker build`. The weekly workflow rewrites it via `scripts/bump-versions.sh sync-docs`.
+[Mini Bun](https://github.com/philippdormann/bun) packages the official Bun runtime into a **37.6 MB** Docker image, roughly 3× smaller than `oven/bun:alpine`. The official release binary is verified with GPG + SHA256, stripped, and then compressed with UPX (`--best --lzma`), all on top of Alpine 3.24. The megabyte figure is GitHub Actions `docker image inspect` Size after the CI buildx load. Do not overwrite it from a local `docker build`. The weekly workflow rewrites it via `scripts/bump-versions.sh sync-docs`.
 
 ## 🏷️ Tags & Architectures
 
@@ -27,7 +27,7 @@
 
 **Supported architectures**: `linux/amd64` (x64-musl-baseline) and `linux/arm64` (aarch64-musl).
 
-Images are available on both **Docker Hub** (`popwers/mini-bun`) and **GitHub Container Registry** (`ghcr.io/popwers/mini-bun`). All three tags above are published to both registries on every release.
+Images are published to **GitHub Container Registry** (`ghcr.io/philippdormann/bun`) only. All three tags above are published to GHCR on every release.
 
 Images are rebuilt and published automatically every Monday when a Bun or Alpine pin changes.
 
@@ -35,16 +35,16 @@ Images are rebuilt and published automatically every Monday when a Bun or Alpine
 
 ```bash
 # Pull and check the Bun version
-docker run --rm popwers/mini-bun --version
+docker run --rm ghcr.io/philippdormann/bun --version
 
 # Interactive shell
-docker run -it popwers/mini-bun:latest sh
+docker run -it ghcr.io/philippdormann/bun:latest sh
 ```
 
 ## 📦 Usage in your Dockerfile
 
 ```dockerfile
-FROM popwers/mini-bun:latest
+FROM ghcr.io/philippdormann/bun:latest
 
 WORKDIR /home/bun/app
 
@@ -59,7 +59,7 @@ CMD ["bun", "index.ts"]
 To run as the non-root `bun` user (UID/GID 1000):
 
 ```dockerfile
-FROM popwers/mini-bun:latest
+FROM ghcr.io/philippdormann/bun:latest
 
 WORKDIR /home/bun/app
 COPY --chown=bun:bun . .
@@ -69,7 +69,7 @@ USER bun
 CMD ["bun", "index.ts"]
 ```
 
-Or at runtime: `docker run -u bun popwers/mini-bun:latest bun index.ts`
+Or at runtime: `docker run -u bun ghcr.io/philippdormann/bun:latest bun index.ts`
 
 ## ⚙️ Runtime Notes
 
@@ -95,8 +95,8 @@ Or at runtime: `docker run -u bun popwers/mini-bun:latest bun index.ts`
 ## 🛠️ Building Locally
 
 ```bash
-git clone https://github.com/popwers/mini-bun.git
-cd mini-bun
+git clone https://github.com/philippdormann/bun.git
+cd bun
 
 # Build for current platform
 docker build -t mini-bun .
@@ -123,4 +123,4 @@ docker images mini-bun
 
 - [Bun Documentation](https://bun.sh/docs)
 - [Bun GitHub Repository](https://github.com/oven-sh/bun)
-- [Docker Hub — popwers/mini-bun](https://hub.docker.com/r/popwers/mini-bun)
+- [GHCR — philippdormann/bun](https://github.com/philippdormann/bun/pkgs/container/bun)

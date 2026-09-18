@@ -1,6 +1,6 @@
 # mini-bun
 
-mini-bun is a Docker image. It packages the official Bun musl release into Alpine Linux, then strips the binary and compresses it with UPX. Images publish to `popwers/mini-bun` and `ghcr.io/popwers/mini-bun`. Default branch is `main`.
+mini-bun is a Docker image. It packages the official Bun musl release into Alpine Linux, then strips the binary and compresses it with UPX. Image publishes to `ghcr.io/philippdormann/bun` only. Default branch is `main`.
 
 ## Layout
 
@@ -47,8 +47,8 @@ Read the Dockerfile for current pin values. Do not copy those numbers into this 
 Run a published image:
 
 ```sh
-docker run --rm popwers/mini-bun --version
-docker run -it popwers/mini-bun:latest sh
+docker run --rm ghcr.io/philippdormann/bun --version
+docker run -it ghcr.io/philippdormann/bun:latest sh
 ```
 
 Build locally:
@@ -95,7 +95,7 @@ Check or apply pins:
 3. The amd64 smoke test runs.
 4. `sync-docs` writes the measured size into `README.MD`.
 5. The job commits `Dockerfile` and `README.MD` only. It does not commit `AGENTS.md`.
-6. Registry push runs only when a pin changed or the run is a manual dispatch. Tags go to Docker Hub and GHCR as `latest`, `vX.Y.Z`, and the `X.Y` minor alias.
+6. Registry push runs only when a pin changed or the run is a manual dispatch. Tags go to GHCR as `latest`, `vX.Y.Z`, and the `X.Y` minor alias.
 
 Pin commit messages use a rocket emoji. See `scripts/bump-versions.sh sync-docs`. CI skips those commits.
 
