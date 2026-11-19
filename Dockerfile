@@ -51,7 +51,7 @@ RUN apk update && apk upgrade --no-cache && apk --no-cache add \
     && rm -f "bun-linux-$build.zip" SHASUMS256.txt.asc SHASUMS256.txt \
     && chmod +x /usr/local/bin/bun \
     && strip -s /usr/local/bin/bun \
-    && upx --best --lzma --no-backup /usr/local/bin/bun
+    && upx --best --no-backup /usr/local/bin/bun
 
 FROM alpine:3.24
 
