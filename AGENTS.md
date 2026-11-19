@@ -22,7 +22,7 @@ Read the Dockerfile for current pin values. Do not copy those numbers into this 
 - Both `FROM alpine:X.Y` lines are the Alpine pin. They must match.
 - The build stage downloads the official musl zip for the host arch. amd64 uses `x64-musl-baseline`. arm64 uses `aarch64-musl`.
 - Downloads verify with GPG key `F3DCC08A8572C0749B3E18888EAB4D40A7B22B59` and SHA256.
-- After `chmod +x`, the build runs `strip -s` then `upx --best --lzma --no-backup`. `--ultra-brute` was slower for almost no size win.
+- After `chmod +x`, the build runs `strip -s` then `upx --no-backup`. Do not add `--best`: the brute-force filter search made the CI amd64 build jump from 5s to over 15 minutes. Do not add `--lzma`: it saved about 11 MB but made each process start roughly 4x slower.
 - The runtime image creates user `bun` with UID and GID 1000. Workdir is `/home/bun/app`.
 - Default process user stays root, matching `oven/bun`. Switch with `USER bun` or `docker run -u bun`.
 - `bunx` is a symlink to `/usr/local/bin/bun`.
